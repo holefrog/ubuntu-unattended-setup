@@ -1,0 +1,261 @@
+# config.ini.example - Ubuntu 安装脚本配置模板
+# ======================================================================================================
+# 使用说明：
+# 1. 复制此文件为 config.ini：cp config.ini.example config.ini
+# 2. 修改所有 YOUR_*_HERE 占位符为真实值
+# 3. 确保 config.ini 已被 .gitignore 排除（不要提交到 Git）
+# ======================================================================================================
+
+[System]
+# 时区设置（使用 timedatectl list-timezones 查看可用时区）
+TIMEZONE = America/Vancouver
+
+# 系统语言（使用 locale -a 查看可用语言）
+LOCALE = en_US.UTF-8
+
+# Java 环境包名（用于 tinyMediaManager 等应用）
+# 可选值：openjdk-11-jre, openjdk-17-jre, openjdk-21-jre
+JAVA_PACKAGE = openjdk-21-jre
+
+# 系统配置开关（True/False）
+REMOVE_SNAP = True
+CONFIGURE_SUDO_NOPASSWD = True
+CONFIGURE_HOSTS_BLOCKING = True
+CONFIGURE_BASHRC = True
+
+
+# ======================================================================================================
+# [Paths] - 所有核心路径定义（相对于 $HOME）
+# ======================================================================================================
+# 所有核心目录都在这里定义，由 setup.sh 统一创建
+# 路径都是相对于用户主目录的
+# ======================================================================================================
+[Paths]
+# 应用安装目录
+PROGRAMS_DIR = Programs
+
+# 配置文件目录
+CONFIG_DIR = .config
+
+# 下载目录
+DOWNLOADS_DIR = Downloads
+
+# 临时文件目录
+TEMP_DIR = Temp
+
+
+# ======================================================================================================
+# [InstallOptions] - 安装控制选项
+# ======================================================================================================
+[InstallOptions]
+# 是否跳过 APT 包安装模块
+SKIP_APT_PACKAGES = False
+
+# 是否跳过 DEB 包安装模块
+SKIP_DEB_PACKAGES = False
+
+# 是否跳过桌面应用安装模块（如 NextCloud, DoubleCommander）
+SKIP_DESKTOP_APPS = False
+
+# 安装完成后是否自动重启系统
+AUTO_REBOOT = False
+
+
+# ======================================================================================================
+# [Firefox] - Firefox PPA 配置
+# ======================================================================================================
+[Firefox]
+FIREFOX_PPA = ppa:mozillateam/ppa
+
+
+# ======================================================================================================
+# [APT_PACKAGES] - 批量安装的 APT 软件包
+# ======================================================================================================
+# 格式：包名 = 描述（描述可选，仅用于注释）
+# ======================================================================================================
+[APT_PACKAGES]
+# 基础工具
+git = 版本控制系统
+curl = 命令行 URL 工具
+wget = 网络下载工具
+net-tools = 网络工具集
+build-essential = 编译工具链
+htop = 系统监控工具
+tree = 目录树显示
+
+# 开发/编程
+adb = Android Debug Bridge
+fastboot = Android Fastboot Tool
+python3-pip = Python 包管理器
+python3-venv = Python 虚拟环境
+
+# 网络/安全
+openvpn = OpenVPN 客户端
+aria2 = 多线程下载工具
+filezilla = FTP 客户端
+putty = SSH 客户端
+
+# 桌面/媒体
+gnome-tweaks = GNOME 优化工具
+gnome-shell-extension-manager = 扩展管理器
+hardinfo = 硬件信息查看器
+dconf-editor = 配置编辑器
+vlc = VLC 媒体播放器
+gimp = 图像编辑器
+ffmpeg = 多媒体处理工具
+libreoffice = LibreOffice 办公套件
+goldendict = 词典工具
+
+# 虚拟化
+qemu-kvm = QEMU 虚拟机
+libvirt-daemon-system = Libvirt 守护进程
+libvirt-clients = Libvirt 客户端
+bridge-utils = 网桥工具
+virt-manager = 虚拟机管理器
+virt-viewer = 虚拟机查看器
+ovmf = UEFI 固件
+
+# 压缩/解压
+p7zip-full = 7-Zip 完整版
+unrar = RAR 解压工具
+libunrar5 = RAR 库文件
+
+
+# ======================================================================================================
+# [DEB_PACKAGES] - 批量安装的 DEB 软件包
+# ======================================================================================================
+# 格式：描述 = 下载 URL
+# ======================================================================================================
+[DEB_PACKAGES]
+BlueMail = https://download.bluemail.me/BlueMail/deb/BlueMail.deb
+VeraCrypt = https://launchpad.net/veracrypt/trunk/1.26.24/+download/veracrypt-1.26.24-Ubuntu-24.04-amd64.deb
+XnView = https://download.xnview.com/XnViewMP-linux-x64.deb
+
+
+# ======================================================================================================
+# [GoogleChrome] - Google Chrome
+# ======================================================================================================
+[GoogleChrome]
+# 是否安装（True/False）
+CHROME_INSTALL = True
+
+
+# ======================================================================================================
+# [DoubleCommander] - 双面板文件管理器
+# ======================================================================================================
+[DoubleCommander]
+DC_VERSION = 1.1.30
+DC_BASE_URL = https://sourceforge.net/projects/doublecmd/files/DC%20for%20Linux%2064%20bit/Double%20Commander%20${DC_VERSION}
+DC_FILE_NAME = doublecmd-${DC_VERSION}.gtk2.x86_64.tar.xz
+DC_INSTALL_DIR = ${PROGRAMS_DIR}/doublecmd
+
+
+# ======================================================================================================
+# [TinyMediaManager] - 媒体库管理工具
+# ======================================================================================================
+[TinyMediaManager]
+TMM_VERSION = 5.2.4
+TMM_FILE = tinyMediaManager-${TMM_VERSION}-linux-amd64.tar.xz
+TMM_URL = https://release.tinymediamanager.org/v5/dist/${TMM_FILE}
+TMM_INSTALL_DIR = ${PROGRAMS_DIR}/tinymediamanager
+
+
+# ======================================================================================================
+# [Aria2] - 下载工具
+# ======================================================================================================
+[Aria2]
+# 下载目录（支持变量替换）
+ARIA2_DOWNLOAD_DIR = ${DOWNLOADS_DIR}
+
+# 配置文件目录
+ARIA2_CONFIG_DIR = ${CONFIG_DIR}/aria2
+
+# RPC 配置
+ARIA2_RPC_SECRET = YOUR_RPC_SECRET_HERE
+ARIA2_RPC_PORT = 6800
+ENABLE_RPC = true
+RPC_ALLOW_ORIGIN_ALL = true
+RPC_LISTEN_ALL = false
+
+# HTTP 认证（可选，留空则不启用）
+HTTP_USER =
+HTTP_PASSWD =
+
+# 下载设置
+ARIA2_MAX_CONCURRENT_DOWNLOADS = 5
+
+# 文件路径（支持变量替换）
+A2_INPUT_FILE = ${CONFIG_DIR}/aria2/aria2.session
+A2_SAVE_SESSION = ${CONFIG_DIR}/aria2/aria2.session
+A2_SAVE_SESSION_INTERVAL = 60
+A2_LOG_FILE = ${CONFIG_DIR}/aria2/aria2.log
+A2_LOG_LEVEL = warn
+
+
+# ======================================================================================================
+# [NextCloud] - 云同步客户端
+# ======================================================================================================
+[NextCloud]
+NEXTCLOUD_VERSION = 4.0.3
+NEXTCLOUD_FILE = Nextcloud-${NEXTCLOUD_VERSION}-x86_64.AppImage
+NEXTCLOUD_URL = https://github.com/nextcloud-releases/desktop/releases/download/v${NEXTCLOUD_VERSION}/${NEXTCLOUD_FILE}
+NEXTCLOUD_INSTALL_DIR = ${PROGRAMS_DIR}/nextcloud
+
+# 服务器地址（必须修改，用于首次运行时自动配置）
+NEXTCLOUD_SERVER = YOUR_NEXTCLOUD_SERVER_HERE
+
+
+# ======================================================================================================
+# [OpenVPN] - VPN 客户端（示例，如果你使用）
+# ======================================================================================================
+[OpenVPN]
+OPENVPN_CONFIG_DIR = ${PROGRAMS_DIR}/openvpn
+OPENVPN_PROFILE_NAME = YOUR_VPN_PROFILE_NAME_HERE
+OPENVPN_SERVER = YOUR_VPN_SERVER_HERE
+OPENVPN_PORT = 1194
+
+
+# ======================================================================================================
+# [RimeInputMethod] - Rime 输入法
+# ======================================================================================================
+[RimeInputMethod]
+# 是否安装（True/False）
+RIME_INSTALL = True
+
+# 配置子目录（相对于 CONFIG_DIR）
+RIME_CONFIG_SUBDIR = ibus/rime
+
+# 安装包列表（空格分隔）
+RIME_PACKAGES = ibus-rime librime-data-wubi
+
+
+# ======================================================================================================
+# [GNOME_EXTENSIONS] - GNOME 扩展 ID 列表
+# ======================================================================================================
+# 格式：扩展名称 = 扩展 ID
+# ID 可从 extensions.gnome.org 页面 URL 中获取
+# ======================================================================================================
+[GNOME_EXTENSIONS]
+Vitals = 1460
+OpenWeather = 750
+ScreenshotTool = 1112
+ClipboardIndicator = 779
+UserThemes = 19
+DashtoDock = 307
+
+
+# ======================================================================================================
+# 配置说明
+# ======================================================================================================
+#
+# 变量替换规则：
+# 1. ${PROGRAMS_DIR}  -> 替换为 [Paths] 中的 PROGRAMS_DIR 的绝对路径
+# 2. ${CONFIG_DIR}    -> 替换为 [Paths] 中的 CONFIG_DIR 的绝对路径
+# 3. ${DOWNLOADS_DIR} -> 替换为 [Paths] 中的 DOWNLOADS_DIR 的绝对路径
+# 4. ${TEMP_DIR}      -> 替换为 [Paths] 中的 TEMP_DIR 的绝对路径
+#
+# 例如：
+# 如果 PROGRAMS_DIR = Programs
+# 那么 ${PROGRAMS_DIR}/aria2 会被解析为 /home/youruser/Programs/aria2
+#
+# ======================================================================================================

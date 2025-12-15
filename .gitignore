@@ -1,0 +1,572 @@
+# .gitignore - Ubuntu 24.04 安装项目（安全加固版）
+
+# 环境变量（包含密码、密钥）
+config/secrets.env
+.env
+.env.*
+!.env.example
+*.env.local
+*.env.production
+*.env.development
+
+# 真实配置文件（保留 .template 和 .example）
+config.ini
+!config.ini.example
+
+data
+
+# 个性化配置
+config/settings.ini.local
+scripts/config.ini.local
+*.local.ini
+*.private.ini
+
+# ============================================
+# 🔑 密钥、证书和认证信息
+# ============================================
+
+# SSH 密钥
+rpi_keys/*
+data/ssh/*
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+id_ecdsa*
+*.pub
+
+# GPG 密钥
+*.gpg
+*.asc
+*.sig
+
+# API 密钥和令牌
+*_token
+*_secret
+*.token
+*.secret
+*_credentials
+*.credentials
+api_key*
+apikey*
+
+# 密码文件
+*password*
+*passwd*
+*.pwd
+
+# OAuth 和会话
+*.oauth
+*.session
+session_*
+
+# ============================================
+# 💾 备份和数据文件
+# ============================================
+
+# 自动备份
+local_backup/
+*_backup/
+backup_*/
+*.bak
+*.backup
+*.old
+*.orig
+*~
+
+# 数据库备份
+*.sql
+*.db
+*.sqlite
+*.sqlite3
+
+# 归档文件
+*.dump
+*.archive
+
+# ============================================
+# 📝 日志文件
+# ============================================
+
+# 应用日志
+*.log
+*.log.*
+logs/
+log/
+
+# 系统日志
+syslog
+*.journal
+
+# 调试日志
+debug.log
+trace.log
+error.log
+
+# ============================================
+# 🗑️ 临时文件
+# ============================================
+
+# 通用临时文件
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+.*.swp
+.*.swo
+*.cache
+
+# 缓存目录
+.cache/
+cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Vim 临时文件
+.vim/
+*.un~
+Session.vim
+.netrwhist
+
+# Emacs 临时文件
+*~
+\#*\#
+.\#*
+
+# ============================================
+# 🖥️ 操作系统文件
+# ============================================
+
+# Linux
+.directory
+.Trash-*
+.nfs*
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# ============================================
+# 📦 包管理器
+# ============================================
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Python
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Ruby
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+.bundle/
+vendor/bundle
+
+# Go
+vendor/
+Godeps/
+
+# Rust
+target/
+**/*.rs.bk
+Cargo.lock
+
+# ============================================
+# 🛠️ IDE 和编辑器
+# ============================================
+
+# VSCode
+.vscode/
+*.code-workspace
+.history/
+
+# JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea_modules/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# Atom
+.atom/
+
+# Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.project
+.classpath
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# ============================================
+# 🎯 项目特定排除
+# ============================================
+
+# 用户数据（不同步到 Git）
+data/rime-data/build/
+data/rime-data/*.userdb/
+data/rime-data/*.userdb.*
+data/aria2/aria2.session
+data/aria2/dht.dat
+data/aria2/dht6.dat
+data/aria2/*.session
+
+# 下载的安装包
+downloads/
+Downloads/
+*.deb
+*.rpm
+*.tar.gz
+*.tar.xz
+*.tar.bz2
+*.tgz
+*.zip
+*.rar
+*.7z
+*.AppImage
+*.iso
+*.img
+*.dmg
+*.exe
+
+# 生成的桌面文件（运行时创建）
+*.desktop.generated
+
+# 编译输出
+*.o
+*.so
+*.a
+*.dylib
+*.dll
+*.exe
+
+# ============================================
+# 📊 测试和覆盖率
+# ============================================
+
+# 测试输出
+test-results/
+coverage/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.cache
+
+# ============================================
+# 🚀 部署文件
+# ============================================
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+.docker/
+
+# Kubernetes
+*.kubeconfig
+*kubeconfig*
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+
+# Ansible
+*.retry
+
+# ============================================
+# 💡 开发调试
+# ============================================
+
+# 调试文件
+debug.log
+trace.log
+*.stackdump
+core
+core.*
+
+# 性能分析
+*.prof
+*.pstats
+*.cpuprofile
+*.heapprofile
+
+# 内存转储
+*.dmp
+
+# ============================================
+# 📋 文档生成
+# ============================================
+
+# Sphinx
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# MkDocs
+site/
+
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# ============================================
+# 🔍 搜索索引
+# ============================================
+
+# Ctags
+tags
+TAGS
+.tags
+.tags1
+
+# Cscope
+cscope.*
+
+# GTAGS
+GPATH
+GRTAGS
+GSYMS
+GTAGS
+
+# ============================================
+# ⚙️ 配置覆盖（开发环境）
+# ============================================
+
+# 本地开发配置
+*.local
+*.dev
+*.development
+config.local.*
+settings.local.*
+
+# ============================================
+# 🌐 Web 相关
+# ============================================
+
+# Sass
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
+# Less
+*.less.map
+
+# Webpack
+.webpack/
+
+# Parcel
+.parcel-cache/
+
+# Next.js
+.next/
+out/
+
+# Nuxt.js
+.nuxt/
+dist/
+
+# Gatsby
+.cache/
+public/
+
+# ============================================
+# 🔐 安全扫描结果
+# ============================================
+
+# 漏洞扫描报告
+*security-report*
+*vulnerability*
+*.sarif
+
+# ============================================
+# 🎨 设计文件
+# ============================================
+
+# Photoshop
+*.psd
+
+# Sketch
+*.sketch
+
+# Figma
+*.fig
+
+# ============================================
+# 📌 特殊说明
+# ============================================
+
+# ⚠️ 允许提交的模板文件示例：
+!config/secrets.env.example
+!config.ini.example
+!host.ini.example
+!data/aria2/aria2.conf.template
+!data/openvpn/*.ovpn.template
+!autoinstall/autoinstall.yaml.template
+
+# ⚠️ 允许空目录占位文件
+!.gitkeep
+!.keep
+!README.md
+
+# ⚠️ 允许文档中的示例配置
+!docs/**/*.example
+!docs/**/*.sample
+
+# ============================================
+# 🔐 安全检查提醒
+# ============================================
+
+# 在提交前，请确保：
+# 1. ✅ 所有敏感文件已被排除
+# 2. ✅ Git 历史中无敏感信息
+# 3. ✅ 模板文件不包含真实密码
+# 4. ✅ .example 文件只包含占位符
+#
+# 检查命令：
+# git log --all --full-history --source --pretty=format: --name-only --diff-filter=D | sort -u | grep -E "(secret|password|token|key|credential)"
+# git grep -i password
+# git grep -i secret
+# git grep -i token
+# git grep -i api_key
+#
+# 清理历史记录（如果意外提交）：
+# git filter-branch --force --index-filter \
+#   "git rm --cached --ignore-unmatch PATH_TO_FILE" \
+#   --prune-empty --tag-name-filter cat -- --all
+#
+# 或使用 BFG Repo-Cleaner:
+# bfg --delete-files config.ini
+# git reflog expire --expire=now --all && git gc --prune=now --aggressive
+
+# ============================================
+# 🚨 紧急处理：敏感信息泄露
+# ============================================
+
+# 如果敏感信息已提交到 Git：
+# 1. 立即撤销密钥/密码
+# 2. 生成新的凭据
+# 3. 清理 Git 历史
+# 4. 强制推送到远程仓库（需团队协作）
+# 5. 通知所有协作者重新克隆仓库
+
+# ============================================
+# 📚 参考资源
+# ============================================
+
+# GitHub .gitignore 模板:
+# https://github.com/github/gitignore
+
+# Git 安全最佳实践:
+# https://git-scm.com/book/en/v2/Git-Tools-Credential-Storage
+
+# 检测密钥泄露工具:
+# - git-secrets: https://github.com/awslabs/git-secrets
+# - truffleHog: https://github.com/trufflesecurity/truffleHog
+# - gitleaks: https://github.com/gitleaks/gitleaks
